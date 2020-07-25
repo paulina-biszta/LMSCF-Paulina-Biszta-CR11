@@ -22,6 +22,11 @@ INNER JOIN pet_location ON pet_location.location_id=animal.fk_location_id");
 <head>
 <title>Welcome - <?php echo $userRow['userEmail' ]; ?></title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script
+  src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 <body class="bg-light" >
@@ -40,14 +45,17 @@ INNER JOIN pet_location ON pet_location.location_id=animal.fk_location_id");
     <a href="logout.php?logout"><button type="button" class="btn text-white mr-3" style="background-color:rgba(162,202,78, 0.8);">Sing out</button></a>
 	</div>
 </div>
-
-<div style="background-color:rgba(162,202,78, 0.8);">
-<nav class="nav nav-pills nav-justified">
+<nav class="nav nav-justified align-items-center"style="background-color:rgba(162,202,78, 0.8);">
   <a class="nav-item nav-link text-dark" href="home.php">All Cats</a>
   <a class="nav-item nav-link text-dark" href="general.php">Kittens & Adults</a>
   <a class="nav-item nav-link text-dark" href="senior.php">Seniors</a>
+  <form>
+    <input type="text" name="search" id="search" placeholder="search" class="form-control">
+  </form> 
+    <div class="row m-5 justify-content-center" id="result"></div>
+    
 </nav>
-</div>
+
          
 		   <div class="container-fluid">
 
@@ -78,9 +86,50 @@ while ($row = mysqli_fetch_assoc($resAnim)) {
 ?>
 	</div>
 </div>
-       		
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<script>
+
+var request;
+
+$("#search").keyup(function(event){
+   event.preventDefault();
+   if (request) {
+       request.abort();
+   }
+   var $form = $(this);
+   var $inputs = $form.find("input, select, button, textarea");
+   var serializedData = $form.serialize();
+   var search = document.getElementById("search").value;
+   if(search.length > 0){
+    $inputs.prop("disabled", true);
+   request = $.ajax({
+       url: "searchdb.php",
+       type: "post",
+       data: serializedData
+   });
+   request.done(function (response, textStatus, jqXHR){
+       document.getElementById("result").innerHTML= response;
+   });
+ 
+   request.fail(function (jqXHR, textStatus, errorThrown){
+         console.error(
+           "The following error occurred: "+
+           textStatus, errorThrown
+       );
+   });
+   request.always(function () {
+          $inputs.prop("disabled", false);
+   });
+ }else {
+  document.getElementById("result").innerHTML = "";
+ }
+   
+});
+
+
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>

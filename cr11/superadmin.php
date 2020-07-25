@@ -65,9 +65,6 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
   $sql = "SELECT * FROM users WHERE status='admin' OR status='user' ";
   $result = mysqli_query($conn, $sql);
 
-  
- 
-/*   (`userId`, `userName`, `userEmail`, `userPass`, `status`) */
   while ($row = mysqli_fetch_assoc($result)) {
   
     echo '
@@ -88,11 +85,7 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
       </th>
      
      
-          </tr>
-   
-    
-    
-    
+    </tr>
     ';
   }
 
