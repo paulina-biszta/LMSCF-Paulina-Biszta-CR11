@@ -14,7 +14,7 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 
 
 $resAnim = mysqli_query($conn, "SELECT * FROM animal
-INNER JOIN pet_location ON pet_location.location_id=animal.fk_location_id");
+INNER JOIN pet_location ON pet_location.location_id=animal.fk_location_id WHERE age < 8");
 
 ?>
 <!DOCTYPE html>
@@ -22,7 +22,6 @@ INNER JOIN pet_location ON pet_location.location_id=animal.fk_location_id");
 <head>
 <title>Welcome - <?php echo $userRow['userEmail' ]; ?></title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 </head>
 <body class="bg-light" >
 

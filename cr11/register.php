@@ -80,54 +80,61 @@ if ( isset($_POST['btn-signup']) ) {
 <html>
 <head>
   <title>Login & Registration System</title>
-<link rel="stylesheet"  href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"  crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
-   <form method="post"  action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"  autocomplete="off" >
- 
-     
-            <h2>Sign Up.</h2>
-            <hr />
-         
+
+<div class="jumbotron jumbotron-fluid m-0" style="background-color:rgba(162,202,78, 0.8);">
+  <div class="container">
+    <h1 class="display-4"><span>😺</span>Adopt-a-pet</h1>
+    <p class="lead">All those cuties are waiting just for you to take them home.</p>
+  </div>
+</div>
+   <form method="post"  action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"  autocomplete="off" >         
             <?php
    if ( isset($errMSG) ) {
  
    ?>
-           <div  class="alert alert-<?php echo $errTyp ?>" >
+           <div  class="alert m-0 text-center alert-<?php echo $errTyp ?>" >
                          <?php echo  $errMSG; ?>
        </div>
        <?php
   }
   ?>
+
+      <div class="row justify-content-center m-0" style="background:linear-gradient(rgba(162,202,78, 0.8), white);">
+                  <div class="col-6 justify-content-center mt-5 p-4 rounded" style="background-color:rgba(162,202,78, 0.8);">
+                     <h1 class="mb-4 text-center text-white">Sing Up!</h1>
+                        
+                        <input type ="text"  name="name"  class ="form-control mb-2"  placeholder ="Enter Name"  maxlength ="50"   value = "<?php echo $name ?>"  />
          
-     
+                     <span   class = "text-danger" > <?php   echo  $nameError; ?> </span >
+               
          
-            <input type ="text"  name="name"  class ="form-control"  placeholder ="Enter Name"  maxlength ="50"   value = "<?php echo $name ?>"  />
-     
-               <span   class = "text-danger" > <?php   echo  $nameError; ?> </span >
+                  <input   type = "email"   name = "email"   class = "form-control  mb-2"   placeholder = "Enter Your Email"   maxlength = "40"   value = "<?php echo $email ?>"  />
          
-   
-            <input   type = "email"   name = "email"   class = "form-control"   placeholder = "Enter Your Email"   maxlength = "40"   value = "<?php echo $email ?>"  />
-   
-               <span   class = "text-danger" > <?php   echo  $emailError; ?> </span >
-     
+                     <span   class = "text-danger" > <?php   echo  $emailError; ?> </span >
          
-     
-           
-       
-            <input   type = "password"   name = "pass"   class = "form-control"   placeholder = "Enter Password"   maxlength = "15"  />
-           
-               <span   class = "text-danger" > <?php   echo  $passError; ?> </span >
-     
-            <hr />
+                  <input   type = "password"   name = "pass"   class = "form-control  mb-2"   placeholder = "Enter Password"   maxlength = "15"  />
+               
+                     <span   class = "text-danger" > <?php   echo  $passError; ?> </span >
          
-            <button   type = "submit"   class = "btn btn-block btn-primary"   name = "btn-signup" >Sign Up</button >
-            <hr  />
+               
+                  <button   type = "submit"   class = "btn btn-block btn-success mt-2"   name = "btn-signup" >Sign Up</button >
+                  <hr  />
+               <div class="text-center">
+                  <a class="text-white"  href = "index.php" >Sign in Here...</a>
+               </div>    
+                              
+               </div>
+            </div> 
+ </form >
+      
          
-            <a   href = "index.php" >Sign in Here...</a>
-   
- 
-   </form >
+
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
  </body >
 </html >
 <?php  ob_end_flush(); ?>
